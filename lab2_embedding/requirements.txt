@@ -1,0 +1,7 @@
+numpy
+matplotlib
+plotly
+scikit-learn
+langchain-ollama
+nbformat
+pandas

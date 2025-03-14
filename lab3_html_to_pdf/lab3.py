@@ -7,7 +7,16 @@ from pyhtml2pdf import converter
 import re
 from urllib.parse import urlparse
 from datetime import datetime
-from selenium.webdriver.common.by import By
+
+from playwright.async_api import async_playwright
+
+def generate_pdf(html_file, output_pdf):
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
+        page.goto(f'file:{html_file}')
+        page.pdf(path=output_pdf)
+        browser.close()
 
 # Настройка путей для сохранения данных
 OUTPUT_DIRECTORY = 'bank_data_output'
@@ -370,7 +379,9 @@ def convert_html_to_pdf(html_content, output_file):
             f.write(html_content)
         
         # Конвертируем в PDF с помощью weasyprint
-        converter.convert(f'file:{temp_html_path}', output_file, install_driver = True)
+        generate_pdf(temp_html_path, output_file)
+
+        #converter.convert(f'file:{temp_html_path}', output_file)
         #html = weasyprint.HTML(filename=temp_html_path)
         #html.write_pdf(output_file)
         
@@ -524,5 +535,5 @@ if __name__ == "__main__":
     # Получаем список URL из карты сайта
     all_website_urls = get_urls_from_sitemap('https://www.tbank.ru/business/help/sitemap.xml')
     # Обрабатываем стараницу за страницей
-    num_processed = process_urls_from_sitemap(all_website_urls, max_pages=10)
+    num_processed = process_urls_from_sitemap(all_website_urls, max_pages=5)
     print(f"\nИтог: обработано {num_processed} информативных страниц банковского сайта.")

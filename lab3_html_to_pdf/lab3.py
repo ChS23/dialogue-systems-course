@@ -8,7 +8,7 @@ import re
 from urllib.parse import urlparse
 from datetime import datetime
 
-from playwright.async_api import async_playwright
+from playwright.sync_api import sync_playwright
 
 def generate_pdf(html_file, output_pdf):
     with sync_playwright() as p:

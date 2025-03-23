@@ -14,7 +14,7 @@
 ## Требования
 
 - Python 3.7 или выше
-- Библиотеки: requests, beautifulsoup4, weasyprint
+- Библиотеки: requests, beautifulsoup4, weasyprint / pyhtml2pdf 
 - Точность извлечения контента не менее 90%
 - Обработка минимум 15-20 информативных страниц
 

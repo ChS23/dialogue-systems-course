@@ -956,7 +956,7 @@ def demonstrate_multi_user_support(vector_store=None):
 # 
 
 # %%
-# Запуск демонстрации в неинтерактивном режиме
+# Запуск демонстрации
 if __name__ == "__main__":
     import lancedb
     import os

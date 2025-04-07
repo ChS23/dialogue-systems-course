@@ -32,10 +32,12 @@
 # %%
 import pandas as pd
 from dotenv import load_dotenv
+import os
 from typing import Dict, List, Any, Optional
 
 # Загрузка переменных окружения
-load_dotenv(".env")
+os.environ["OPENAI_API_KEY"] = ""
+os.environ["TAVILY_API_KEY"] = ""
 
 # Импорт компонентов LangChain
 from langchain_core.prompts import ChatPromptTemplate

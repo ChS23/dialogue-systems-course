@@ -41,6 +41,10 @@ from dotenv import load_dotenv
 
 # Загрузка переменных окружения
 load_dotenv(".env")
+import os
+
+# Загрузка переменных окружения
+os.environ["OPENAI_API_KEY"] = ""
 
 # Импорт компонентов LangChain
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder

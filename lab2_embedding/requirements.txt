@@ -1,7 +1,6 @@
-numpy
-matplotlib
-plotly
+mistralai
 scikit-learn
-langchain-ollama
-nbformat
+plotly
 pandas
+python-dotenv
+numpy

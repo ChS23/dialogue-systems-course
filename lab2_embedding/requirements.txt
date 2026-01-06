@@ -1,6 +1,0 @@
-mistralai
-scikit-learn
-plotly
-pandas
-python-dotenv
-numpy

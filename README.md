@@ -77,6 +77,13 @@ dialogue-systems-course/
 ├── lab6_memory_history/    # Память и управление состоянием
 ├── lab7_document_search/   # RAG-агент по документам
 ├── lab8_tg_bot/            # Telegram-бот (курсовая)
+├── langfuse/               # Инструкция по трассировке Langfuse
 ├── domain_selection/       # Выбор предметной области
 └── compose/                # Docker Compose (Ollama)
 ```
+
+## Трассировка с Langfuse
+
+[Langfuse](https://langfuse.com/) — open-source платформа для наблюдаемости LLM-приложений: отслеживание вызовов моделей, задержек, стоимости и качества ответов.
+
+Подробная инструкция по настройке и примеры интеграции с LangChain/LangGraph — в [`langfuse/README.md`](langfuse/README.md).

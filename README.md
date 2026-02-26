@@ -33,7 +33,18 @@
 
 - **Python 3.12** или выше
 - **uv** — менеджер пакетов ([установка](https://docs.astral.sh/uv/getting-started/installation/))
-- **API ключи**: `MISTRAL_API_KEY`, `TAVILY_API_KEY` (в файле `.env` в корне проекта)
+- **API ключи** (в файле `.env` в корне проекта):
+  - `MISTRAL_API_KEY` — получить на [console.mistral.ai](https://console.mistral.ai/) (раздел API Keys)
+  - `TAVILY_API_KEY` — получить на [app.tavily.com](https://app.tavily.com/) (нужен для lab5)
+  - `BOT_TOKEN` — получить у [@BotFather](https://t.me/BotFather) в Telegram (нужен для lab8)
+
+Пример файла `.env`:
+
+```env
+MISTRAL_API_KEY=your_mistral_api_key
+TAVILY_API_KEY=your_tavily_api_key
+BOT_TOKEN=your_telegram_bot_token
+```
 
 ## Установка и запуск
 

@@ -40,17 +40,14 @@
 from dotenv import load_dotenv
 
 # Загрузка переменных окружения
-load_dotenv(".env")
+load_dotenv()
 import os
-
-# Загрузка переменных окружения
-os.environ["OPENAI_API_KEY"] = ""
 
 # Импорт компонентов LangChain
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage, BaseMessage
-from langchain_openai import ChatOpenAI
+from langchain_mistralai import ChatMistralAI
 
 # Компоненты для работы с памятью
 from langchain.memory import ChatMessageHistory, ConversationBufferMemory, ConversationSummaryMemory
@@ -89,7 +86,7 @@ def demonstrate_basic_memory():
     ])
     
     # Инициализируем модель
-    model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+    model = ChatMistralAI(model="mistral-small-latest", temperature=0)
     
     # Создаем цепочку: промпт -> модель -> парсер
     chain = prompt | model | StrOutputParser()
@@ -200,7 +197,7 @@ def demonstrate_chat_message_history():
             print(f"Ассистент: {message.content}")
     
     # Создаем модель
-    model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+    model = ChatMistralAI(model="mistral-small-latest", temperature=0)
     
     # Создаем промпт с плейсхолдером для истории сообщений
     prompt = ChatPromptTemplate.from_messages([
@@ -239,7 +236,7 @@ def demonstrate_memory_types():
     ])
     
     # Инициализируем модель
-    model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+    model = ChatMistralAI(model="mistral-small-latest", temperature=0)
     
     # Создаем цепочку: промпт -> модель -> парсер
     chain = prompt | model | StrOutputParser()
@@ -369,7 +366,7 @@ def create_chatbot_with_memory(memory_type="buffer", memory_params=None):
         memory_params = {}
     
     # Инициализируем модель
-    model = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
+    model = ChatMistralAI(model="mistral-small-latest", temperature=0.7)
     
     # Выбираем тип памяти
     if memory_type == "buffer":
@@ -560,7 +557,7 @@ def demonstrate_simple_stategraph():
     простой диалоговой системы.
     """
     # Создаем модель
-    model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+    model = ChatMistralAI(model="mistral-small-latest", temperature=0)
     
     # Создаем граф с предопределенной схемой MessagesState
     workflow = StateGraph(state_schema=MessagesState)
@@ -682,7 +679,7 @@ def demonstrate_checkpointing():
     Демонстрирует использование checkpointer для сохранения состояния графа.
     """
     # Создаем простой граф с MessagesState
-    model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+    model = ChatMistralAI(model="mistral-small-latest", temperature=0)
     
     # Создаем граф
     workflow = StateGraph(state_schema=MessagesState)

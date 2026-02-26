@@ -1,0 +1,13 @@
+[project]
+name = "lab6-memory-history"
+version = "0.1.0"
+description = "Lab 6: Память и управление состоянием в диалоговых системах"
+requires-python = ">=3.12"
+dependencies = [
+    "langchain>=0.3.0",
+    "langchain-community>=0.3.0",
+    "langchain-core>=0.3.0",
+    "langchain-mistralai>=0.2.0",
+    "langgraph>=0.2.0",
+    "python-dotenv>=1.2.1",
+]

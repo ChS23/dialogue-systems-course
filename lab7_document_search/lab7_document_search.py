@@ -37,17 +37,16 @@
 from dotenv import load_dotenv
 
 # Загрузка переменных окружения
-load_dotenv(".env")
+load_dotenv()
 
 # Импорт компонентов LangChain
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage, BaseMessage, ToolMessage
-from langchain_openai import ChatOpenAI
+from langchain_mistralai import ChatMistralAI, MistralAIEmbeddings
 
 # Импорт компонентов для работы с векторным хранилищем
 from langchain_community.vectorstores import LanceDB
-from langchain_openai import OpenAIEmbeddings
 
 # Импорт компонентов LangGraph
 from langgraph.graph import StateGraph, START
@@ -110,7 +109,7 @@ def connect_to_lancedb(db_path="../lab4_pdf_pipeline/data/lancedb", table_name="
         print(f"Количество документов в базе: {table.count_rows()}")
 
         # Создаем модель эмбеддингов
-        embeddings = OpenAIEmbeddings()
+        embeddings = MistralAIEmbeddings()
         
         # Создаем экземпляр LanceDB для LangChain
         vector_store = LanceDB(
@@ -234,7 +233,7 @@ def raw_analyze_documents(documents):
     ])
     
     # Используем модель GPT-4o-mini для анализа документов
-    model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+    model = ChatMistralAI(model="mistral-small-latest", temperature=0)
     chain = prompt | model | StrOutputParser()
     
     return chain.invoke({"documents": documents})
@@ -298,7 +297,7 @@ def create_search_agent_nodes(vector_store):
         Словарь с узлами графа
     """
     # Инициализация модели
-    model = ChatOpenAI(model="gpt-4o-mini", temperature=0.2)
+    model = ChatMistralAI(model="mistral-small-latest", temperature=0.2)
     
     # Вспомогательные функции для работы с чистыми функциями поиска
     def _search_func(query_str):

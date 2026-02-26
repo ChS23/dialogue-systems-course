@@ -1,0 +1,14 @@
+[project]
+name = "lab7-document-search"
+version = "0.1.0"
+description = "Lab 7: Поисковая система с ReAct агентом в LangGraph"
+requires-python = ">=3.12"
+dependencies = [
+    "langchain>=0.3.0",
+    "langchain-community>=0.3.0",
+    "langchain-core>=0.3.0",
+    "langchain-mistralai>=0.2.0",
+    "lancedb>=0.26.1",
+    "langgraph>=0.2.0",
+    "python-dotenv>=1.2.1",
+]

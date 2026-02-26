@@ -42,7 +42,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_mistralai import ChatMistralAI
 from langchain_community.tools import TavilySearchResults
-from langchain.agents import create_tool_calling_agent, AgentExecutor
+from langchain.agents import create_agent
 from langchain_core.tools import tool
 from langchain_core.messages import HumanMessage, SystemMessage
 from pydantic import BaseModel, Field
@@ -276,33 +276,26 @@ def demonstrate_tool_interface():
     llm = ChatMistralAI(model="mistral-small-latest", temperature=0)
     tools_list = [get_weather, get_population, TavilySearchResults(max_results=2)]
 
-    agent = create_tool_calling_agent(
+    agent = create_agent(
         llm,
         tools_list,
-        ChatPromptTemplate.from_messages([
-            ("system", "Вы - информационный ассистент с доступом к различным инструментам для сбора данных. "
-                      "Используйте доступные инструменты для получения точной информации и ответа на вопросы пользователя."),
-            ("human", "{input}"),
-            ("placeholder", "{agent_scratchpad}")
-        ])
-    )
-
-    agent_executor = AgentExecutor(
-        agent=agent,
-        tools=tools_list,
-        verbose=True,
-        handle_parsing_errors=True
+        system_prompt="Вы - информационный ассистент с доступом к различным инструментам для сбора данных. "
+                      "Используйте доступные инструменты для получения точной информации и ответа на вопросы пользователя."
     )
 
     print("\nЗапрос агенту: 'Какая погода в Москве и сколько там жителей?'")
-    response = agent_executor.invoke({
-        "input": "Какая погода в Москве и сколько там жителей?"
+    response = agent.invoke({
+        "messages": [{"role": "user", "content": "Какая погода в Москве и сколько там жителей?"}]
     })
+
+    # Извлекаем последний ответ из messages
+    last_message = response["messages"][-1]
+    output = last_message.content if hasattr(last_message, "content") else str(last_message)
 
     return {
         "input": "Какая погода в Москве и сколько там жителей?",
-        "output": response["output"],
-        "tools_used": [tool.name for tool in tools_list]
+        "output": output,
+        "tools_used": [t.name for t in tools_list]
     }
 
 print("\n=== 4. Интерфейс tool в LangChain ===")

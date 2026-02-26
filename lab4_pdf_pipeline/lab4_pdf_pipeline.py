@@ -97,6 +97,9 @@ class TiktokenWrapper(PreTrainedTokenizerBase):
     def save_vocabulary(self, *args) -> Tuple[str]:
         return ()
 
+    def __len__(self) -> int:
+        return self._vocab_size
+
     @classmethod
     def from_pretrained(cls, *args, **kwargs):
         return cls()
@@ -364,8 +367,7 @@ PDF_DIR = "../lab3_html_to_pdf/bank_data_output/pdf"
 DB_PATH = "./data/lancedb"
 TABLE_NAME = "pdf_docs"
 
-# Запуск (раскомментируйте для выполнения)
-# table = run_pipeline(PDF_DIR, DB_PATH, TABLE_NAME)
+table = run_pipeline(PDF_DIR, DB_PATH, TABLE_NAME)
 
 # %% [markdown]
 # ## Интерактивный поиск
@@ -388,8 +390,23 @@ def interactive_search(db_path: str = "data/lancedb", table_name: str = "pdf_doc
             results = search_in_table(query, table, limit=3)
             display_search_results(results)
 
-# Запуск интерактивного поиска (раскомментируйте)
-# interactive_search(DB_PATH, TABLE_NAME)
+# Демо-поиск (вместо интерактивного режима)
+demo_queries = [
+    "Как пополнить счёт?",
+    "Регистрация ИП",
+    "Доставка заказов",
+]
+
+db = lancedb.connect(DB_PATH)
+try:
+    demo_table = db.open_table(TABLE_NAME)
+    for q in demo_queries:
+        print(f"\n{'='*50}")
+        print(f"Запрос: {q}")
+        results = search_in_table(q, demo_table, limit=2)
+        display_search_results(results)
+except Exception as e:
+    print(f"Ошибка при демо-поиске: {e}")
 
 # %% [markdown]
 # ## Выводы

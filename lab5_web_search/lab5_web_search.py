@@ -41,7 +41,7 @@ load_dotenv()
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_mistralai import ChatMistralAI
-from langchain_community.tools import TavilySearchResults
+from langchain_tavily import TavilySearch
 from langchain.agents import create_agent
 from langchain_core.tools import tool
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -274,7 +274,7 @@ def demonstrate_tool_interface():
         return population_data.get(city, f"Информация о населении {city} недоступна")
 
     llm = ChatMistralAI(model="mistral-small-latest", temperature=0)
-    tools_list = [get_weather, get_population, TavilySearchResults(max_results=2)]
+    tools_list = [get_weather, get_population, TavilySearch(max_results=2)]
 
     agent = create_agent(
         llm,
@@ -315,7 +315,7 @@ agent_demonstration = demonstrate_tool_interface()
 
 # %%
 def demonstrate_two_tool_approaches():
-    search = TavilySearchResults(max_results=3)
+    search = TavilySearch(max_results=3)
     llm = ChatMistralAI(model="mistral-small-latest", temperature=0)
 
     query = "Какие ключевые компоненты и возможности предлагает фреймворк LangChain?"
@@ -325,8 +325,11 @@ def demonstrate_two_tool_approaches():
 
     search_results = search.invoke(query)
 
+    # TavilySearch возвращает dict с ключом 'results'
+    results_list = search_results.get("results", []) if isinstance(search_results, dict) else search_results
+
     print("\nШаг 2: Получаем результаты поиска (первые 2 результата):")
-    for i, result in enumerate(search_results[:2]):
+    for i, result in enumerate(results_list[:2]):
         print(f"\nИсточник {i+1}: {result['title']}")
         print(f"URL: {result['url']}")
         print(f"Фрагмент: {result['content'][:150]}...")

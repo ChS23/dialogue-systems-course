@@ -385,6 +385,7 @@ dependencies = [
     { name = "langchain-community" },
     { name = "langchain-core" },
     { name = "langchain-mistralai" },
+    { name = "langchain-tavily" },
     { name = "langgraph" },
     { name = "lxml" },
     { name = "mistralai" },
@@ -415,6 +416,7 @@ requires-dist = [
     { name = "langchain-community", specifier = ">=0.4.1" },
     { name = "langchain-core", specifier = ">=1.2.16" },
     { name = "langchain-mistralai", specifier = ">=1.1.1" },
+    { name = "langchain-tavily", specifier = ">=0.2.17" },
     { name = "langgraph", specifier = ">=1.0.7" },
     { name = "lxml", specifier = ">=6.0.2" },
     { name = "mistralai", specifier = ">=1.10.0" },
@@ -1123,6 +1125,21 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/a8/07/cdfcfed8dc680634ae470868aecb9ac48f953302b13c0bb119f6ee96e1be/langchain_mistralai-1.1.1.tar.gz", hash = "sha256:2430dd6c5e714252ce58bdf9453da4e1f2c694e239dde7e9c4d488a6d1ef2368", size = 143032, upload-time = "2025-12-12T22:11:54.594Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2f/96/67e029665e9c348a2f17d1a681dc139631a6d8241b7a8d8e6ee69ff70a4b/langchain_mistralai-1.1.1-py3-none-any.whl", hash = "sha256:47839fc69c879bad4ff60133f238c15574416c2dcd850121621a7e9de45800c1", size = 19439, upload-time = "2025-12-12T22:11:53.546Z" },
+]
+
+[[package]]
+name = "langchain-tavily"
+version = "0.2.17"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "aiohttp" },
+    { name = "langchain" },
+    { name = "langchain-core" },
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/e6/32/f7b5487efbcd5fca5d4095f03dce7dcf0301ed81b2505d9888427c03619b/langchain_tavily-0.2.17.tar.gz", hash = "sha256:738abd790c50f19565023ad279c8e47e87e1aeb971797fec30a614b418ae6503", size = 25298, upload-time = "2026-01-18T13:09:04.112Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/35/f9/bb6f1cea2a19215e4169a3bcec3af707ff947cf62f6ef7d28e7280f03e29/langchain_tavily-0.2.17-py3-none-any.whl", hash = "sha256:da4e5e7e328d054dc70a9c934afa1d1e62038612106647ff81ad8bfbe3622256", size = 30734, upload-time = "2026-01-18T13:09:03.1Z" },
 ]
 
 [[package]]

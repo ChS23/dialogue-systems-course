@@ -13,7 +13,7 @@
 
 ## Требования
 
-- **Python 3.11** или выше
+- **Python 3.12** или выше
 - **API ключ Mistral AI**
 - **Библиотеки**: `mistralai`, `scikit-learn`, `plotly`, `pandas`
 
@@ -26,15 +26,14 @@
    export MISTRAL_API_KEY="your_api_key"
    ```
 
-2. **Установка зависимостей:**
+2. **Установка зависимостей (из корня проекта):**
    ```bash
-   cd lab2_embedding
-   pip install -r requirements.txt
+   uv sync
    ```
 
 3. **Запуск:**
    ```bash
-   python lab2_embedding.py
+   uv run python lab2_embedding/lab2_embedding.py
    ```
    Или откройте файл в VS Code и запускайте ячейки интерактивно.
 

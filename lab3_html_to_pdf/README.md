@@ -13,8 +13,8 @@
 
 ## Требования
 
-- Python 3.7 или выше
-- Библиотеки: requests, beautifulsoup4, weasyprint / pyhtml2pdf 
+- Python 3.12 или выше
+- Библиотеки: requests, beautifulsoup4, playwright
 - Точность извлечения контента не менее 90%
 - Обработка минимум 15-20 информативных страниц
 
@@ -64,8 +64,7 @@ lab3_html_parsing/
 │   ├── html/         # Сохраненные HTML-страницы
 │   ├── pdf/          # Конвертированные PDF-документы
 │   └── text/         # Извлеченный текст
-├── html_parser.ipynb # Jupyter Notebook с кодом парсера
-└── requirements.txt  # Зависимости проекта
+└── lab3.py           # Скрипт парсера
 ```
 
 ## Критерии оценки

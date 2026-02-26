@@ -17,7 +17,8 @@
 
 ## Требования
 
-- **Python 3.11** или выше
+- **Python 3.12** или выше
+- **uv** — менеджер пакетов
 - **API ключ Mistral AI** (бесплатные кредиты для тестирования)
 
 ## Установка и настройка
@@ -30,18 +31,14 @@
    export MISTRAL_API_KEY="your_api_key_here"
    ```
 
-2. **Создание виртуального окружения и установка зависимостей:**
+2. **Установка зависимостей (из корня проекта):**
    ```bash
-   cd lab1_api
-   python -m venv .venv
-   source .venv/bin/activate  # macOS/Linux
-   # .venv\Scripts\activate   # Windows
-   pip install -r requirements.txt
+   uv sync
    ```
 
 3. **Запуск эксперимента:**
    ```bash
-   python code/api_experiment.py
+   uv run python lab1_api/lab1_api.py
    ```
 
 ## Параметры генерации

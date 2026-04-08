@@ -1,0 +1,6 @@
+pandas
+dotenv
+langchain_core
+langchain_mistralai
+langchain_tavily
+

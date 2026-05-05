@@ -1,0 +1,6 @@
+dotenv
+langchain_core
+langchain_mistralai
+langchain_community
+langgraph
+lancedb
